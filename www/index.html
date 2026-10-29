@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#6558d3">
+    <title>CampusMate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+
+        <header class="topbar">
+            <div class="brand">
+                <div class="brand-icon">C</div>
+                <div>
+                    <h1>CampusMate</h1>
+                    <p>Your campus, organized.</p>
+                </div>
+            </div>
+            <button id="themeToggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+        </header>
+
+        <main>
+            <section class="welcome">
+                <p class="eyebrow" id="todayDate">YOUR STUDY SPACE</p>
+                <h2>Hey, student! 👋</h2>
+                <p>Make today count, one task at a time.</p>
+            </section>
+
+            <section class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-icon purple">✓</div>
+                    <p>Pending tasks</p>
+                    <h3 id="pendingCount">0</h3>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-icon orange">◷</div>
+                    <p>Upcoming exams</p>
+                    <h3 id="examCount">0</h3>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-icon green">▦</div>
+                    <p>Attendance</p>
+                    <h3 id="attendanceSummary">0%</h3>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-icon pink">✎</div>
+                    <p>Saved notes</p>
+                    <h3 id="noteCount">0</h3>
+                </article>
+            </section>
+
+            <section class="panel" id="tasksSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">STAY ON TRACK</p>
+                        <h2>My assignments</h2>
+                    </div>
+                    <span class="section-symbol">✓</span>
+                </div>
+
+                <form id="taskForm" class="entry-form">
+                    <input id="taskInput" type="text"
+                        placeholder="e.g. Complete MAD assignment"
+                        maxlength="120" required>
+                    <input id="taskDue" type="date" aria-label="Due date">
+                    <button type="submit" class="primary-btn">+ Add</button>
+                </form>
+
+                <div id="taskList" class="item-list"></div>
+                <p id="emptyTasks" class="empty-state">No assignments yet. Add your first task!</p>
+            </section>
+
+            <section class="panel" id="timetableSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PLAN YOUR DAY</p>
+                        <h2>Class timetable</h2>
+                    </div>
+                    <span class="section-symbol">▦</span>
+                </div>
+
+                <form id="classForm" class="entry-form">
+                    <input id="className" type="text"
+                        placeholder="Subject name" maxlength="80" required>
+                    <input id="classTime" type="time" aria-label="Class time" required>
+                    <button type="submit" class="primary-btn">+ Add</button>
+                </form>
+
+                <div id="classList" class="item-list"></div>
+                <p id="emptyClasses" class="empty-state">Your timetable will appear here.</p>
+            </section>
+
+            <section class="panel" id="attendanceSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">KEEP YOUR RECORD</p>
+                        <h2>Attendance calculator</h2>
+                    </div>
+                    <span class="section-symbol">%</span>
+                </div>
+
+                <form id="attendanceForm" class="attendance-form">
+                    <label>
+                        Classes attended
+                        <input id="attendedInput" type="number"
+                            min="0" step="1" placeholder="e.g. 32" required>
+                    </label>
+                    <label>
+                        Total classes
+                        <input id="totalInput" type="number"
+                            min="1" step="1" placeholder="e.g. 40" required>
+                    </label>
+                    <button type="submit" class="primary-btn">Calculate</button>
+                </form>
+
+                <div class="attendance-result">
+                    <h3 id="attendanceResult">—</h3>
+                    <p id="attendanceMessage">Enter your class counts to calculate attendance.</p>
+                    <div class="progress-track">
+                        <div id="attendanceBar" class="progress-fill"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="panel" id="examsSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">BE PREPARED</p>
+                        <h2>Exam countdown</h2>
+                    </div>
+                    <span class="section-symbol">◷</span>
+                </div>
+
+                <form id="examForm" class="entry-form">
+                    <input id="examName" type="text"
+                        placeholder="Exam or subject name" maxlength="100" required>
+                    <input id="examDate" type="date" aria-label="Exam date" required>
+                    <button type="submit" class="primary-btn">+ Add</button>
+                </form>
+
+                <div id="examList" class="item-list"></div>
+                <p id="emptyExams" class="empty-state">No upcoming exams added.</p>
+            </section>
+
+            <section class="panel" id="notesSection">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">SAVE YOUR IDEAS</p>
+                        <h2>Quick notes</h2>
+                    </div>
+                    <span class="section-symbol">✎</span>
+                </div>
+
+                <form id="noteForm" class="note-form">
+                    <input id="noteTitle" type="text"
+                        placeholder="Note title" maxlength="100" required>
+                    <textarea id="noteContent" rows="3"
+                        placeholder="Write something to remember..."
+                        maxlength="3000" required></textarea>
+                    <button type="submit" class="primary-btn">Save note</button>
+                </form>
+
+                <div id="noteList" class="note-grid"></div>
+                <p id="emptyNotes" class="empty-state">Your saved notes will appear here.</p>
+            </section>
+        </main>
+
+        <nav class="bottom-nav" aria-label="Main navigation">
+            <a href="#top" data-section="top">⌂<span>Home</span></a>
+            <a href="#tasksSection" data-section="tasksSection">✓<span>Tasks</span></a>
+            <a href="#timetableSection" data-section="timetableSection">▦<span>Classes</span></a>
+            <a href="#attendanceSection" data-section="attendanceSection">%<span>Attendance</span></a>
+            <a href="#notesSection" data-section="notesSection">✎<span>Notes</span></a>
+        </nav>
+
+        <footer>
+            <p>Made for your next big achievement ✨</p>
+            <p>CampusMate · Your personal study companion</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
